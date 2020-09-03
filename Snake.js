@@ -36,7 +36,7 @@ function Snake(){
 	}
 
 	this.death = function(){
-		if(this.x < 0 || this.x >= width || this.y < 0 || this.x >= height)
+		if(this.x < 0 || this.x >= width || this.y < 0 || this.y >= height)
 			setup();
 		for(var i = 1;i < s.length;i++)
 			if(this.x == s[i].x && this.y == s[i].y)
