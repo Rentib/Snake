@@ -1,6 +1,7 @@
 const scl = 20;
 var s;
 var score = 0;
+var highscore = 0;
 var fruit;
 
 function setup(){
@@ -38,5 +39,7 @@ function scoreboard() {
   	rect(0, 400, 400, 40);
   	fill(250);
   	textSize(18);
-  	text("SCORE: " + score + "", 50, 425);
+  	highscore = max(highscore, score);
+  	text("SCORE: " + score + "", 25, 425);
+  	text("HIGHSCORE: " + highscore + "", 240, 425);
 }
