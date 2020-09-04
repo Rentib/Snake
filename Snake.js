@@ -1,6 +1,6 @@
 function Snake(){
-	this.x = width / 2;
-	this.y = width / 2;
+	this.x = 400 / 2;
+	this.y = 400 / 2;
 	this.vx = 0;
 	this.vy = 0;
 
@@ -28,7 +28,6 @@ function Snake(){
 			s[i].y = s[i - 1].y;
 			s[i].show();
 		}
-		
 		this.x += this.vx * scl;
 		this.y += this.vy * scl;
 		this.x = floor(this.x / scl) * scl;
@@ -36,11 +35,12 @@ function Snake(){
 	}
 
 	this.death = function(){
-		if(this.x < 0 || this.x >= width || this.y < 0 || this.y >= height)
-			setup();
+		if(this.x < 0 || this.x >= 400 || this.y < 0 || this.y >= 400)
+			kys();
+		if(this.x > 400) this.x -= scl;
 		for(var i = 1;i < s.length;i++)
 			if(this.x == s[i].x && this.y == s[i].y)
-				setup();
+				kys();
 	}
 }
 
@@ -52,7 +52,18 @@ function Fruit(){
 		rect(this.x, this.y, scl, scl);
 	}
 	this.newPosition = function(){
-		this.x = floor(random(0, width / scl)) * scl;
-		this.y = floor(random(0, height / scl)) * scl;
+		this.x = floor(random(0, 400 / scl)) * scl;
+		this.y = floor(random(0, 400 / scl)) * scl;
 	}
+}
+
+function kys(){
+	var snake = new Snake();
+	snake.x = max(0, min(s[0].x, 380));
+	snake.y = max(0, min(s[0].y, 380));
+	s.vx = s[0].vx;
+	s.vy = s[0].vy;
+	s = [];
+	score = 0;
+	s.push(snake);
 }
