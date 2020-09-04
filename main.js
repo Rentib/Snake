@@ -4,7 +4,7 @@ var score = 0;
 var fruit;
 
 function setup(){
-	createCanvas(400, 400);
+	createCanvas(400, 440);
 	s = [];
 	s.push(new Snake());
 	frameRate(7);
@@ -14,11 +14,12 @@ function setup(){
 
 function draw(){
 	background(50);
+	scoreboard();
 	fruit.show();
-	s[0].update();	
+	s[0].update();
+	s[0].death();
 	s[0].show();
 	s[0].eat(fruit);
-	s[0].death();
 }
 
 function keyPressed(){
@@ -30,4 +31,12 @@ function keyPressed(){
 		s[0].dir(0, 1);
 	if(keyCode === LEFT_ARROW || key == 'a')
 		s[0].dir(-1, 0);
+}
+
+function scoreboard() {
+ 	fill(0);
+  	rect(0, 400, 400, 40);
+  	fill(250);
+  	textSize(18);
+  	text("SCORE: " + score + "", 50, 425);
 }
